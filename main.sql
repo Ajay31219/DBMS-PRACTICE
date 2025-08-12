@@ -1,5 +1,5 @@
 -- Create Department3 table
-CREATE TABLE Department3 (
+CREATE TABLE Department (
     dept_id INT PRIMARY KEY,
     dept_name VARCHAR(50) UNIQUE
 );
@@ -9,11 +9,11 @@ CREATE TABLE Course (
     course_id INT PRIMARY KEY,
     course_name VARCHAR(100),
     dept_id INT,
-    FOREIGN KEY (dept_id) REFERENCES Department3(dept_id)
+    FOREIGN KEY (dept_id) REFERENCES Department(dept_id)
 );
 
 -- Insert sample departments
-INSERT INTO Department3 (dept_id, dept_name)
+INSERT INTO Department (dept_id, dept_name)
 VALUES 
 (1, 'Computer Science'),
 (2, 'Electrical'),
@@ -36,12 +36,12 @@ VALUES
 (110, 'VLSI Design', 5);
 
 SELECT dept_name
-FROM Department3
+FROM Department
 WHERE dept_id IN (
     SELECT dept_id
     FROM Course
     GROUP BY dept_id
     HAVING COUNT(course_id) > 2
 );
-SELECT * FROM Department3
-SELECT * FROM Course
+SELECT * FROM Department;
+SELECT * FROM Course;
